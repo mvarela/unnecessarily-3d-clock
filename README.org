@@ -1,0 +1,20 @@
+# Unnecessarily-3D clock
+
+A [[re-frame][https://github.com/day8/re-frame]] application made to mess around
+with Doug Hamilton's [[https://github.com/DougHamil/threeagent][threeagent]]. 
+
+Threeagent provides a reagent-based wrapper to [[https://threejs.org/][three.js]].
+
+
+### Run application:
+
+```
+lein clean
+lein dev
+```
+
+shadow-cljs will automatically push cljs changes to the browser.
+
+Wait a bit, then browse to [[http://localhost:8280]].
+
+
