@@ -30,9 +30,18 @@
 (re-frame/reg-sub
  ::time-hours-pos
  (fn[]
-   (re-frame/subscribe [::time-hours]))
- (fn[hours]
-   (* 5 hours)))
+   [(re-frame/subscribe [::time-hours])
+   (re-frame/subscribe [::time-minutes])])
+ (fn[[hours minutes]]
+    (* 5 (+ hours (/ minutes 60.0)))))
+
+(re-frame/reg-sub
+ ::time-minutes-pos
+ (fn[]
+   [(re-frame/subscribe [::time-minutes])
+   (re-frame/subscribe [::time-seconds])])
+ (fn[[minutes seconds]]
+   (+ (/ seconds 60.0) minutes)))
 
 (re-frame/reg-sub
  ::time-minutes
@@ -59,3 +68,6 @@
         ys (js/Math.sin (- angle pid2))
         len (/ length -2.0)]
    [(* len xc) (* len ys)]))
+
+(let [minutes (re-frame/subscribe [::time-minutes-pos])]
+  @minutes)

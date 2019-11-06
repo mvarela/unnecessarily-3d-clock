@@ -47,17 +47,12 @@
                         :opacity 0.5
                         :transparent true}}]]))
 
-(defn hand [material-props unit-key len]
+(defn hand [material-props unit-key length]
   (let [props (merge {:color "black"
                       :opacity 0.8
                       :transparent true} material-props)
         units (re-frame/subscribe [unit-key])
-        units-60 (re-frame/subscribe [(case unit-key
-                                        ::subs/time-hours-pos ::subs/time-minutes
-                                        ::subs/time-seconds)])
-        length len
-
-        angle (subs/hand-angle (+ @units (/ @units-60 60.0)))
+        angle (subs/hand-angle @units)
         [pos-x pos-y] (subs/hand-offsets length angle)]
         [:object {:position [pos-x pos-y]
                   :rotation [0 0 angle]}
@@ -101,7 +96,7 @@
             :opacity 0.7} ::subs/time-hours-pos 6)
      (hand {:color "#888389"
             :opacity 0.9
-            :transparent true} ::subs/time-minutes 7.8)
+            :transparent true} ::subs/time-minutes-pos 7.8)
      (ticks {:color "orange" :opacity 0.9} 8 1 -9.2)
      [:sphere {:position [0 0 -10]
                :radius 0.4
