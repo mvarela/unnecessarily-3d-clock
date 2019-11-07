@@ -5,6 +5,7 @@ with Doug Hamilton's [[https://github.com/DougHamil/threeagent][threeagent]].
 
 Threeagent provides a reagent-based wrapper to [[https://threejs.org/][three.js]].
 
+Live demo [[https://martin.varela.fi/2019/11/01/webgl-react-and-no-javascript/][here]].
 
 ### Run application:
 
